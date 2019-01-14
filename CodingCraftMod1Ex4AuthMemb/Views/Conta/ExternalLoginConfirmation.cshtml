@@ -1,0 +1,147 @@
+﻿@model CodingCraftMod1Ex4Auth.ViewModels.RegisterExternalLoginModel
+
+@using Fideli100.Core.ViewModels
+
+@{
+    ViewBag.Title = Language.Register;
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>IntegrateWith @ViewBag.ProviderDisplayName</h2>
+</hgroup>
+
+@using (Html.BeginForm("ExternalLoginConfirmation", "Conta", new { ReturnUrl = ViewBag.ReturnUrl })) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>AssociationForm</legend>
+        <p>
+            YouveSuccessfullyAuthenticatedWith <strong>@ViewBag.ProviderDisplayName</strong>.
+            PleaseConfirmDataBelowAndClickTheConfirmButtonToFinish.
+        </p>
+        <ol>
+            <li class="name">
+                @Html.LabelFor(m => m.UserName)
+                @Html.TextBoxFor(m => m.UserName)
+                @Html.ValidationMessageFor(m => m.UserName)
+            </li>
+            <li class="name">
+                @Html.LabelFor(m => m.FullName)
+                @Html.TextBoxFor(m => m.FullName)
+                @Html.ValidationMessageFor(m => m.FullName)
+            </li>
+            <li class="name">
+                @Html.LabelFor(m => m.Gender)
+                @Html.DropDownListFor(model => model.Gender,
+                                ((GendersViewModel)ViewBag.GendersViewModel).Genders,
+                                Language.Choose)
+                @Html.ValidationMessageFor(m => m.Gender)
+            </li>
+            <li class="name">
+                @Html.LabelFor(m => m.DateOfBirth)
+                @Html.EditorFor(m => m.DateOfBirth)
+                @Html.ValidationMessageFor(m => m.DateOfBirth)
+            </li>
+            <li class="name">
+                @Html.LabelFor(m => m.CPF)
+                @Html.TextBoxFor(m => m.MaskedCPF)
+                <script type='text/javascript'>
+                    $(document).ready(function () {
+                        {
+                            $('#MaskedCPF').mask('999.999.999-99');
+                        }
+                    });
+                </script>
+                @Html.ValidationMessageFor(m => m.MaskedCPF)
+            </li>
+            <li class="name">
+                @Html.LabelFor(m => m.Address)
+                @Html.TextBoxFor(m => m.Address)
+                @Html.ValidationMessageFor(m => m.Address)
+            </li>
+            <li class="name">
+                @Html.LabelFor(m => m.Number)
+                @Html.TextBoxFor(m => m.Number)
+                @Html.ValidationMessageFor(m => m.Number)
+            </li>
+            <li class="name">
+                @Html.LabelFor(m => m.AdditionalAddressInformation)
+                @Html.TextBoxFor(m => m.AdditionalAddressInformation)
+                @Html.ValidationMessageFor(m => m.AdditionalAddressInformation)
+            </li>
+            <li class="name">
+                @Html.LabelFor(m => m.Neighborhood)
+                @Html.TextBoxFor(m => m.Neighborhood)
+                @Html.ValidationMessageFor(m => m.Neighborhood)
+            </li>
+            <li class="name">
+                @Html.HiddenFor(m => m.CityID)
+                @Html.LabelFor(m => m.CityName)
+                @Html.EditorFor(m => m.CityName)
+                @Html.ValidationMessageFor(m => m.CityName)
+            </li>
+            <li class="name">
+                @Html.HiddenFor(m => m.StateID)
+                @Html.LabelFor(m => m.StateName)
+                @Html.TextBoxFor(m => m.StateName, new { disabled = "disabled", @readonly = "readonly" })
+                @Html.ValidationMessageFor(m => m.StateName)
+            </li>
+            <li class="name">
+                @Html.LabelFor(m => m.PostalCode)
+                @Html.EditorFor(m => m.MaskedPostalCode)
+                <script type='text/javascript'>
+                    $(document).ready(function () {
+                        {
+                            $('#MaskedPostalCode').mask('99999-999');
+                        }
+                    });
+                </script>
+                @Html.ValidationMessageFor(m => m.MaskedPostalCode)
+            </li>
+            <li class="name">
+                <ul id="PhonesEditor" style="list-style-type: none">
+                    @if (Model.CustomerPhones != null)
+                    {
+                        foreach (var phone in Model.CustomerPhones)
+                        { Html.RenderPartial("_CustomerPhonesEditor", phone); }
+                    }
+                </ul>
+                <p><a id="addAnother" href="#" class="small-button">AddPhone</a></p>
+            </li>
+        </ol>
+
+        @Html.HiddenFor(m => m.ExternalLoginData)
+        <input type="submit" value="Register" />
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script type="text/javascript">
+    $(function () {
+        $("#CityName").autocomplete({
+            source: '@Url.Action("AjaxFindByName", "Cities")',
+            minLength: 3,
+            select: function (event, ui) {
+                $("#CityName").val(ui.item.value);
+                $("#CityID").val(ui.item.CityID);
+                $("#StateName").val(ui.item.StateName);
+                $("#StateID").val(ui.item.StateID);
+
+                return false;
+            }
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $("#addAnother").click(function () {
+        $.get('/Customers/CustomerPhoneRow', function (template) {
+            $("#PhonesEditor").append(template);
+        });
+    });
+</script>

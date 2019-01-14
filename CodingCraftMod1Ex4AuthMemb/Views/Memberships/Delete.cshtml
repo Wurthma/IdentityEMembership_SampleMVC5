@@ -1,0 +1,112 @@
+﻿@model CodingCraftMod1Ex4Auth.Models.Membership
+
+@{
+    ViewBag.Title = "Excluir";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Membership</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomUser.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomUser.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ConfirmationToken)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ConfirmationToken)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsConfirmed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsConfirmed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastPasswordFailureDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastPasswordFailureDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PasswordFailuresSinceLastSuccess)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PasswordFailuresSinceLastSuccess)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PasswordChangedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PasswordChangedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PasswordVerificationToken)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PasswordVerificationToken)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PasswordVerificationTokenExpirationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PasswordVerificationTokenExpirationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastModified)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastModified)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedOn)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Voltar a lista", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,265 @@
+﻿@model CodingCraftMod1Ex4Auth.ViewModels.RegisterReferralModel
+@using Fideli100.Core.ViewModels
+@using Fideli100.Core.Models
+
+@{
+    ViewBag.Title = Language.Register;
+}
+
+<hgroup class="title" style=" text-align:center;    ">
+    <h2 style="color:#D70A0A;">CreateANewAccount</h2>
+</hgroup>
+<div class="divpromo">
+    <img style="width: 600px; margin: 110px 40px; float:right;"src="@Url.Content("~/Content/Themes/Base/Images/complete_cads_ind.jpg")"/>
+
+</div>
+<div class="divcadaster">
+
+@using (Html.BeginForm())
+{   
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    <div style="padding: 40px">
+         <div id="helpname" class="dvhelpcreate">
+        <p id="textoajudagender">O campo "Nome" deve ser preenchido com o nome do usuário.</p>
+        </div>
+        <div id="helpusername" class="dvhelpcreate">
+        <p id="textoajudagender">O campo "Nome" deve ser preenchido com o nome do usuário.</p>
+        </div>
+        <div id="helppassword" class="dvhelpcreate">
+        <p id="textoajudagender">O campo "Nome" deve ser preenchido com o nome do usuário.</p>
+        </div>
+        <div id="helpconfirmpass" class="dvhelpcreate2">
+        <p id="textoajudagender">O campo "Nome" deve ser preenchido com o nome do usuário.</p>
+        </div>
+        <div id="helpgender" class="dvhelpcreate2">
+            <p id="textoajudagender">O campo "Sexo" deve ser preenchido com o sexo do usuário.</p>
+        </div>
+        <div id="helpdate" class="dvhelpcreate2">
+            <p id="textoajudagender">O campo "Data de Nascimento" deve ser preenchido com a data de nascimento do usuário.</p>
+        </div>
+        <div id="helpcpf" class="dvhelpcreate3">
+            <p id="textoajudagender">O campo "CPF" deve ser preenchido com o Cpf do usuário.</p>
+        </div>
+        <div id="helppostalcode" class="dvhelpcreate3">
+            <p id="textoajudagender">O campo "CEP" deve ser preenchido com o CEP do usuário.</p>
+        </div>
+        <div id="helpadress" class="dvhelpcreate3">
+            <p id="textoajudagender">O campo "Endereço" deve ser preenchido com o Endereço do usuário.</p>
+        </div>
+        <div id="helpnumber" class="dvhelpcreate4">
+            <p id="textoajudagender">O campo "Número" deve ser preenchido com o Número da Residência do usuário.</p>
+        </div>
+        <div id="helpadditional" class="dvhelpcreate4">
+            <p id="textoajudagender">O campo "Complemento" deve ser preenchido com informações sobre o enderço do usuário.</p>
+        </div>
+        <div id="helpneighbordhood" class="dvhelpcreate4">
+            <p id="textoajudagender">O campo "Bairro" deve ser preenchido com o bairro do usuário.</p>
+        </div>
+        <div id="helpcity" class="dvhelpcreate5">
+            <p id="textoajudagender">O campo "Cidade" deve ser preenchido com a Cidade do usuário.</p>
+        </div>
+        <div id="helpstate" class="dvhelpcreate5">
+            <p id="textoajudagender">O campo "Estado" é preenchido automaticamente ao preencher o campo "Cidade".</p>
+        </div>
+        <div id="helpphonetype" class="dvhelpcreate5">
+            <p id="textoajudagender">O campo "Tipo de Telefone" deve ser preenchido com o tipo do telefone do usuário.</p>
+        </div> 
+        <div id="helpphone" class="dvhelpcreate5">
+            <p id="textoajudagender">O campo "Telefone" deve ser preenchido com o número de telefone do usuário.</p>
+        </div>
+         <div>
+            <fieldset>
+                <legend>RegistrationForm</legend>
+
+                @Html.Hidden("ReferredFriendID", (int)ViewBag.ReferredFriendID)
+                <table class="formregistercad">
+                         <tr>
+                            <td class="tdcadlb">
+                                <label class="lblcad">Name</label>@Html.TextBoxFor(m => m.Name)
+                            </td>
+                            <td><img id="bthelpname"  class="bthelpcad" src="/Content/Themes/base/images/dark_warn.png"/></td>
+                        </tr>
+                        <tr>
+                            <td><label class="lblvalidator">@Html.ValidationMessageFor(model => model.Name)</label></td>
+                        </tr>
+                        <tr>
+                            <td class="tdcadlb">
+                                <label class="lblcad">UserName</label>@Html.TextBoxFor(m => m.UserName)
+                            </td>
+                            <td><img id="bthelpusername"  class="bthelpcad" src="/Content/Themes/base/images/dark_warn.png"/></td>
+                        </tr>
+                        <tr>
+                            <td><label class="lblvalidator">@Html.ValidationMessageFor(model => model.UserName)</label></td>
+                        </tr>
+                        <tr>
+                            <td class="tdcadlb">
+                                <label class="lblcad"> Password</label>@Html.PasswordFor(m => m.Password)
+                            </td>
+                            <td><img id="bthelppassword"  class="bthelpcad" src="/Content/Themes/base/images/dark_warn.png"/></td>
+                        </tr>
+                        <tr>
+                            <td><label class="lblvalidator">@Html.ValidationMessageFor(model => model.Password)</label></td>
+                        </tr>
+                        <tr>
+                            <td class="tdcadlb">
+                                <label class="lblcad">ConfirmPassword</label>@Html.PasswordFor(m => m.ConfirmPassword)
+                            </td>
+                            <td><img id="bthelpconfirmpass"  class="bthelpcad"" src="/Content/Themes/base/images/dark_warn.png"/></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="lblvalidator">@Html.ValidationMessageFor(model => model.ConfirmPassword)</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="lblcad">Gender</label>
+                                @Html.DropDownListFor(model => model.Gender,
+                                ((GendersViewModel)ViewBag.GendersViewModel).Genders,
+                                Language.Choose)
+                            </td>
+                            <td><img id="bthelpgender"  class="bthelpcad" src="/Content/Themes/base/images/dark_warn.png"/></td>
+                        </tr>
+                        <tr>
+                            <td><label class="lblvalidator"> @Html.ValidationMessageFor(model => model.Gender)</label></td>
+                        </tr>
+                        <tr>
+                            <td class="tdcadlb">
+                              <label class="lblcad">DateOfBirth </label>@Html.EditorFor(model => model.DateOfBirth)
+                            </td>
+                            <td><img id="bthelpdate" class="bthelpcad" src="/Content/Themes/base/images/dark_warn.png"/></td>
+                        </tr>
+                        <tr>
+                            <td><label class="lblvalidator">@Html.ValidationMessageFor(model => model.DateOfBirth)</label></td>
+                        </tr>
+                        <tr>    
+                            <td class="tdcadlb">
+                                <label class="lblcad">CPF</label>@Html.EditorFor(model => model.MaskedCPF)
+                            </td>
+                            <td><img id="bthelpcpf" class="bthelpcad" src="/Content/Themes/base/images/dark_warn.png"/></td>
+                            <script type='text/javascript'>
+                                $(document).ready(function () {
+                                    {
+                                        $('#MaskedCPF').mask('999.999.999-99');
+                                    }
+                                });
+                            </script>
+                        </tr>
+                        <tr>
+                            <td><label class="lblvalidator"> @Html.ValidationMessageFor(model => model.MaskedCPF)</label></td>
+
+                        </tr>
+                        <tr>
+                            <td class="tdcadlb"><label class="lblcad">PostalCode</label> @Html.EditorFor(model => model.MaskedPostalCode)
+                            <script type='text/javascript'>
+                                $(document).ready(function () {
+                                    {
+                                        $('#MaskedPostalCode').mask('99999-999');
+                                    }
+                                });
+                            </script>
+
+                            </td>
+                            <td><img id="bthelppostalcode" class="bthelpcad" src="/Content/Themes/base/images/dark_warn.png"/></td>
+                        </tr>
+                        <tr>
+                           <td><label class="lblvalidator"> @Html.ValidationMessageFor(model => model.PostalCode)</label></td>
+                            
+                        </tr>
+                        <tr>
+                           <td class="tdcadlb"><label class="lblcad">Adress</label>@Html.EditorFor(model => model.Adress) </td>
+                           <td><img id="bthelpadress" class="bthelpcad" src="/Content/Themes/base/images/dark_warn.png"/></td>
+                        </tr>
+                        <tr>
+                            <td><label class="lblvalidator">@Html.ValidationMessageFor(model => model.Adress)</label></td>
+                            
+                        </tr>
+                        <tr>
+                            <td class="tdcadlb"><label class="lblcad">Number</label>@Html.EditorFor(model => model.Number)</td>
+                            <td><img id="bthelnumber" class="bthelpcad" src="/Content/Themes/base/images/dark_warn.png"/></td>
+                        </tr>
+                        <tr>
+                            <td><label class="lblvalidator">@Html.ValidationMessageFor(model => model.Number)</label></td>
+                            
+                        </tr>
+                        <tr>
+                            <td class="tdcadlb"><label class="lblcad">AdditionalAddressInformation</label>@Html.EditorFor(model => model.AdditionalAddressInformation)</td>
+                            <td><img id="btheladditional" class="bthelpcad" src="/Content/Themes/base/images/dark_warn.png"/></td>
+                        </tr>
+                        <tr>
+                            <td><label class="lblvalidator">@Html.ValidationMessageFor(model => model.AdditionalAddressInformation)</label></td>
+                        </tr>
+                        <tr>
+                            <td class="tdcadlb"><label class="lblcad">Neighborhood</label>@Html.EditorFor(model => model.Neighborhood)</td>
+                            <td><img id="bthelpaneightborhood" class="bthelpcad" src="/Content/Themes/base/images/dark_warn.png"/></td>
+                        </tr>
+                        <tr>
+                            <td><label class="lblvalidator">@Html.ValidationMessageFor(model => model.Neighborhood)</label></td>
+                        </tr>
+                        <tr>@Html.HiddenFor(model => model.CityID)
+                           <td class="tdcadlb"><label class="lblcad">City</label>@Html.EditorFor(model => model.CityName)</td>
+                           <td><img id="bthelpccity" class="bthelpcad" src="/Content/Themes/base/images/dark_warn.png"/></td>
+                        </tr>
+                        <tr>
+                           <td><label class="lblvalidator">@Html.ValidationMessageFor(model => model.CityName)</label></td>
+                        </tr>
+                       
+                        <tr>@Html.HiddenFor(model => model.StateID)
+                           <td class="tdcadlb"><label class="lblcad">State</label>@Html.TextBoxFor(model => model.StateName, new { disabled = "disabled", @readonly = "readonly" })</td>
+                           <td><img id="bthelpstate" class="bthelpcad" src="/Content/Themes/base/images/dark_warn.png"/></td>
+                        </tr>
+                        <tr>
+                           <td><label class="lblvalidator">@Html.ValidationMessageFor(model => model.StateName)</label></td>
+                        </tr>
+                        <tr><td>
+                            <ul id="PhonesEditor" style="list-style-type: none">
+                                @if (Model.CustomerPhones != null)
+                                {
+                                    foreach (CustomerPhone phone in Model.CustomerPhones)
+                                    { Html.RenderPartial("_CustomerPhonesEditor", phone); }
+                                }
+                            </ul>
+                            <p><a id="addAnother" href="#" class="small-button">AddPhone</a></p>
+                            </td>
+                        </tr>
+                </table>
+                <p>
+                    <input type="submit" value="Register" />
+                </p>
+            </fieldset> 
+             </div>
+        </div>
+
+}
+        
+    
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script type="text/javascript">
+    $(function () {
+        $("#CityName").autocomplete({
+            source: '@Url.Action("AjaxFindByName", "Cities")',
+            minLength: 3,
+            select: function (event, ui) {
+                $("#CityName").val(ui.item.value);
+                $("#CityID").val(ui.item.CityID);
+                $("#StateName").val(ui.item.StateName);
+                $("#StateID").val(ui.item.StateID);
+
+                return false;
+            }
+        });
+    });
+</script>
+<script type="text/javascript">
+    $("#addAnother").click(function () {
+        $.get('/Customers/CustomerPhoneRow', function (template) {
+            $("#PhonesEditor").append(template);
+        });
+    });
+</script>

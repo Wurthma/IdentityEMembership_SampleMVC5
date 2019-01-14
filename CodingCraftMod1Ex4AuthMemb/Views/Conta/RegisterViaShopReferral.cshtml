@@ -1,0 +1,66 @@
+﻿@model CodingCraftMod1Ex4Auth.ViewModels.RegisterShopReferralModel
+@using Fideli100.Core.ViewModels
+
+@{
+    ViewBag.Title = Language.Register;
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>CreateANewAccount</h2>
+</hgroup>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    <fieldset>
+        <legend>RegistrationForm</legend>
+
+        @Html.HiddenFor(model => model.ReferredCustomerID)
+
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.UserName)
+                @Html.TextBoxFor(m => m.UserName)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Password)
+                @Html.PasswordFor(m => m.Password)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.ConfirmPassword)
+                @Html.PasswordFor(m => m.ConfirmPassword)
+            </li>
+            <li>
+                @Html.LabelFor(model => model.Gender)
+                @Html.DropDownListFor(model => model.Gender, 
+                    ((GendersViewModel) ViewBag.GendersViewModel).Genders, 
+                    Language.Choose)
+                @Html.ValidationMessageFor(model => model.Gender)
+            </li>
+            <li>
+                @Html.LabelFor(model => model.DateOfBirth)
+                @Html.EditorFor(model => model.DateOfBirth)
+                @Html.ValidationMessageFor(model => model.DateOfBirth)
+            </li>
+            <li>
+                @Html.LabelFor(model => model.MaskedCPF)
+                @Html.EditorFor(model => model.MaskedCPF)
+                <script type='text/javascript'>
+                    $(document).ready(function () {
+                        {
+                            $('#MaskedCPF').mask('999.999.999-99');
+                        }
+                    });
+                </script>
+                @Html.ValidationMessageFor(model => model.MaskedCPF)
+            </li>
+        </ol>
+        <input type="submit" value="Register" />
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

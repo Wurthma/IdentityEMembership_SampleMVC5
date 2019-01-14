@@ -1,0 +1,95 @@
+﻿@model CodingCraftMod1Ex4Auth.ViewModels.RegisterViewModel
+
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+<section id="loginForm">
+    <div style="margin:25px">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="panel panel-login">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    @Html.ActionLink("Login", "Login")
+                                </div>
+                                <div class="col-xs-6">
+                                    @Html.ActionLink("Registrar", "Register", null, new { @class = "active" })
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    @using (Html.BeginForm("Register", "Conta", FormMethod.Post, htmlAttributes: new { ReturnUrl = ViewBag.ReturnUrl, @id = "register-form" }))
+                                    {
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="text-center">
+                                                        <a href="https://phpoll.com/recover" tabindex="5" class="forgot-password">Esqueceu a senha?</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @placeholder = "Usário", @tabindex = "1" })
+                                            @Html.ValidationMessageFor(m => m.UserName)
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Senha", @tabindex = "1" })
+                                            @Html.ValidationMessageFor(m => m.Password)
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @placeholder = "Confirmação da senha", @tabindex = "1" })
+                                            @Html.ValidationMessageFor(m => m.ConfirmPassword)
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-sm-6 col-sm-offset-3">
+                                                    <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</section>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        $(function () {
+
+            $('#login-form-link').click(function (e) {
+                $("#login-form").delay(100).fadeIn(100);
+                $("#register-form").fadeOut(100);
+                $('#register-form-link').removeClass('active');
+                $(this).addClass('active');
+                e.preventDefault();
+            });
+            $('#register-form-link').click(function (e) {
+                $("#register-form").delay(100).fadeIn(100);
+                $("#login-form").fadeOut(100);
+                $('#login-form-link').removeClass('active');
+                $(this).addClass('active');
+                e.preventDefault();
+            });
+
+        });
+    </script>
+}

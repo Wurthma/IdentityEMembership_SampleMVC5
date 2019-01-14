@@ -1,0 +1,77 @@
+﻿@model CodingCraftMod1Ex4Identity.Models.IndexViewModel
+@{
+    ViewBag.Title = "Gerencie sua conta";
+}
+
+<h2>@ViewBag.Title.</h2>
+<p class="text-success">@ViewBag.StatusMessage</p>
+<div class="row">
+    <div class="col-md-8">
+        <p>
+            @(Model.HasPassword ? Html.ActionLink("Alterar a senha", "ChangePassword") 
+                : Html.ActionLink("Pick a password", "SetPassword"))
+        </p>
+        <p>
+            Phone Number: @(Model.PhoneNumber ?? "None") [
+            @if (Model.PhoneNumber != null)
+            {
+                @Html.ActionLink("Alterar", "AddPhoneNumber")
+                @: &nbsp;|&nbsp;
+                @Html.ActionLink("Remover", "RemovePhoneNumber")
+            }
+            else
+            {
+                @Html.ActionLink("Adicionar", "AddPhoneNumber")
+            }
+            ]
+        </p>
+        <p>
+            Logins externos: @Model.Logins.Count
+            @Html.ActionLink("[Gerenciar]", "ManageLogins")
+        </p>
+        @if (Model.TwoFactor)
+        {
+            using (Html.BeginForm("DisableTFA", "Manage", FormMethod.Post, new {@class = "form-horizontal", role = "form"}))
+            {
+                 @Html.AntiForgeryToken()
+                 <p>
+                     Two factor está atualmente ativado:
+                     <input type="submit" value="Desativar" class="btn btn-default"/>
+                 </p>
+            }
+        }
+        else
+        {
+            using (Html.BeginForm("EnableTFA", "Manage", FormMethod.Post, new {@class = "form-horizontal", role = "form"}))
+            {
+                @Html.AntiForgeryToken()
+                <p>
+                    Two factor está atualmente desativado:
+                    <input type="submit" value="Ativar" class="btn btn-default"/>
+                </p>
+            }
+        }
+        @if (Model.BrowserRemembered)
+        {
+            using (Html.BeginForm("ForgetBrowser", "Manage", FormMethod.Post, new {@class = "form-horizontal", role = "form"}))
+            {
+                @Html.AntiForgeryToken()
+                <p>
+                    O navegador está sendo lembrado para o two factor:
+                    <input type="submit" value="Esquecer navegador" class="btn btn-default" />
+                </p>
+            }
+        }
+        else
+        {
+            using (Html.BeginForm("RememberBrowser", "Manage", FormMethod.Post, new {@class = "form-horizontal", role = "form"}))
+            {
+                @Html.AntiForgeryToken()
+                <p>
+                    O navegador não está sendo lembrado para o two factor:
+                    <input type="submit" value="Lembrar navegador" class="btn btn-default" />
+                </p>
+            }
+        }
+    </div>
+</div>

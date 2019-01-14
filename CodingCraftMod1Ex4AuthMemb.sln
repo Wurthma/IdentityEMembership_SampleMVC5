@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.168
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodingCraftMod1Ex4AuthMemb", "CodingCraftMod1Ex4AuthMemb\CodingCraftMod1Ex4AuthMemb.csproj", "{B49401D5-D143-4FE4-848E-B7F1127FF2FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodingCraftMod1Ex4Identity", "CodingCraftMod1Ex4Identity\CodingCraftMod1Ex4Identity.csproj", "{D583634C-259C-43DB-8DB7-BC541D46C0BA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B49401D5-D143-4FE4-848E-B7F1127FF2FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B49401D5-D143-4FE4-848E-B7F1127FF2FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B49401D5-D143-4FE4-848E-B7F1127FF2FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B49401D5-D143-4FE4-848E-B7F1127FF2FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D583634C-259C-43DB-8DB7-BC541D46C0BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D583634C-259C-43DB-8DB7-BC541D46C0BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D583634C-259C-43DB-8DB7-BC541D46C0BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D583634C-259C-43DB-8DB7-BC541D46C0BA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F16165F6-6C46-47D9-B8FC-5FD80BA1492B}
+	EndGlobalSection
+EndGlobal
