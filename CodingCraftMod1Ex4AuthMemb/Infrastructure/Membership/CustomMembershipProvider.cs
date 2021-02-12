@@ -1,4 +1,5 @@
-﻿using CodingCraftMod1Ex4Auth.Infrastructure.Helpers;
+﻿using CodingCraftMod1Ex4Auth.Infrastructure.CustomMembership;
+using CodingCraftMod1Ex4Auth.Infrastructure.Helpers;
 using CodingCraftMod1Ex4Auth.Models;
 using System;
 using System.Collections.Generic;
@@ -12,13 +13,12 @@ using System.Web.Configuration;
 using System.Web.Security;
 using WebMatrix.WebData;
 
-namespace CodingCraftMod1Ex4Auth.Infrastructure.CustomMembership
+namespace CodingCraftMod1Ex4Auth.Infrastructure.Membership
 {
     public class CustomMembershipProvider : ExtendedMembershipProvider
     {
-        #region Class Variables
 
-        private int newPasswordLength = 8;
+        #region Class Variables
         private string connectionString;
         private string applicationName;
         private bool enablePasswordReset;

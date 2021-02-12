@@ -6,8 +6,7 @@ using System.Transactions;
 using System.Web.Mvc;
 using System.Web.Security;
 using WebMatrix.WebData;
-using CodingCraftMod1Ex4Auth.Infrastructure.Helpers;
-using CodingCraftMod1Ex4Auth.Infrastructure.CustomMembership;
+using CodingCraftMod1Ex4Auth.Infrastructure.Membership;
 
 namespace CodingCraftMod1Ex4Auth.Controllers
 {
